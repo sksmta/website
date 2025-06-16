@@ -1,0 +1,37 @@
+{
+    "title": "Education",
+    "items": [
+      {
+        "id": "bachelors",
+        "institution": "SUniversity of Glasgow",
+        "degree": "Bachelor of Engineering",
+        "field": "Electronic & Software Engineering",
+        "location": "Glasgow, UK",
+        "startDate": "2023",
+        "endDate": "2027",
+        "gpa": "3.0/4.0",
+        "achievements": [
+          "Specialized in Human-Computer Interaction and Software Engineering",
+          "Teaching Assistant for CS106A: Programming Methodology",
+          "Published research on developer productivity tools",
+          "Winner of the Stanford CS Department Innovation Award"
+        ]
+      },
+      {
+        "id": "High-School",
+        "institution": "De Nobili School C.M.R.I",
+        "degree": "High School Diploma",
+        "field": "PCMT (Physics, Chemistry, Mathematics, and Computer Science)",
+        "location": "Dhanbad, India",
+        "startDate": "2013",
+        "endDate": "2023",
+        "gpa": "96.8%",
+        "achievements": [
+          "Graduated Valedictorian PCMT",
+          "School President and Head of the Student Council - 2022-2023", 
+          "Varsity Basketball - 2021-2023"
+        ]
+      }
+    ]
+  }
+  

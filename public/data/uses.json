@@ -1,0 +1,154 @@
+{
+    "title": "Uses",
+    "subtitle": "The tools and technologies I use daily to build amazing products",
+    "categories": [
+      {
+        "id": "development",
+        "title": "Development",
+        "icon": "Code",
+        "items": [
+          {
+            "name": "Visual Studio Code",
+            "description": "My primary code editor with custom themes and extensions",
+            "category": "Editor",
+            "color": "#007ACC",
+            "url": "https://code.visualstudio.com"
+          },
+          {
+            "name": "Next.js",
+            "description": "The React framework for production applications",
+            "category": "Framework",
+            "color": "#000000",
+            "url": "https://nextjs.org"
+          },
+          {
+            "name": "TypeScript",
+            "description": "JavaScript with type safety for better development",
+            "category": "Language",
+            "color": "#3178C6",
+            "url": "https://typescriptlang.org"
+          },
+          {
+            "name": "Tailwind CSS",
+            "description": "Utility-first CSS framework for rapid UI development",
+            "category": "Styling",
+            "color": "#06B6D4",
+            "url": "https://tailwindcss.com"
+          },
+          {
+            "name": "Vercel",
+            "description": "Platform for frontend frameworks and static sites",
+            "category": "Deployment",
+            "color": "#000000",
+            "url": "https://vercel.com"
+          },
+          {
+            "name": "GitHub",
+            "description": "Version control and collaboration platform",
+            "category": "Version Control",
+            "color": "#181717",
+            "url": "https://github.com"
+          }
+        ]
+      },
+      {
+        "id": "design",
+        "title": "Design",
+        "icon": "Palette",
+        "items": [
+          {
+            "name": "Figma",
+            "description": "Collaborative interface design tool",
+            "category": "Design",
+            "color": "#F24E1E",
+            "url": "https://figma.com"
+          },
+          {
+            "name": "Framer",
+            "description": "Interactive design and prototyping tool",
+            "category": "Prototyping",
+            "color": "#0055FF",
+            "url": "https://framer.com"
+          },
+          {
+            "name": "Adobe Creative Suite",
+            "description": "Professional creative tools for design and media",
+            "category": "Creative",
+            "color": "#FF0000",
+            "url": "https://adobe.com"
+          }
+        ]
+      },
+      {
+        "id": "productivity",
+        "title": "Productivity",
+        "icon": "Zap",
+        "items": [
+          {
+            "name": "Notion",
+            "description": "All-in-one workspace for notes and project management",
+            "category": "Notes",
+            "color": "#000000",
+            "url": "https://notion.so"
+          },
+          {
+            "name": "Linear",
+            "description": "Issue tracking and project management for modern teams",
+            "category": "Project Management",
+            "color": "#5E6AD2",
+            "url": "https://linear.app"
+          },
+          {
+            "name": "Raycast",
+            "description": "Blazingly fast launcher and productivity tool",
+            "category": "Launcher",
+            "color": "#FF6363",
+            "url": "https://raycast.com"
+          },
+          {
+            "name": "Arc Browser",
+            "description": "The browser company's reimagined web browser",
+            "category": "Browser",
+            "color": "#FF6B6B",
+            "url": "https://arc.net"
+          }
+        ]
+      },
+      {
+        "id": "hardware",
+        "title": "Hardware",
+        "icon": "Monitor",
+        "items": [
+          {
+            "name": "MacBook Pro M3",
+            "description": "16-inch with 32GB RAM for development work",
+            "category": "Laptop",
+            "color": "#A8A8A8",
+            "url": "https://apple.com"
+          },
+          {
+            "name": "Studio Display",
+            "description": "27-inch 5K Retina display for crisp visuals",
+            "category": "Monitor",
+            "color": "#A8A8A8",
+            "url": "https://apple.com"
+          },
+          {
+            "name": "Magic Keyboard",
+            "description": "Wireless keyboard with numeric keypad",
+            "category": "Input",
+            "color": "#A8A8A8",
+            "url": "https://apple.com"
+          },
+          {
+            "name": "MX Master 3S",
+            "description": "Advanced wireless mouse for productivity",
+            "category": "Input",
+            "color": "#0066CC",
+            "url": "https://logitech.com"
+          }
+        ]
+      }
+    ]
+  }
+  

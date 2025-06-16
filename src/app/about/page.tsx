@@ -1,14 +1,16 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { CommandPalette } from "@/components/command-palette"
 import { Navigation } from "@/components/navigation"
-import { Hero } from "@/components/hero"
 import { SocialLinks } from "@/components/social-links"
 import { CustomCursor } from "@/components/cursor"
 import { Particles } from "@/components/particles"
+import { AboutHero } from "@/components/about-hero"
+import { ExperienceTree } from "@/components/experience-tree"
+import { EducationTree } from "@/components/education-tree"
+import { CommandPalette } from "@/components/command-palette"
 
-export default function Home() {
+export default function AboutPage() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
 
   useEffect(() => {
@@ -28,9 +30,16 @@ export default function Home() {
       <CustomCursor />
       <Particles />
       <Navigation />
-      <main className="main-content">
-        <Hero />
+
+      <main className="about-main">
+        <AboutHero />
+
+        <div className="trees-container">
+          <ExperienceTree />
+          <EducationTree />
+        </div>
       </main>
+
       <SocialLinks />
       <CommandPalette isOpen={isCommandPaletteOpen} onClose={() => setIsCommandPaletteOpen(false)} />
     </div>

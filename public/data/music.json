@@ -1,0 +1,103 @@
+{
+    "title": "Music",
+    "subtitle": "The soundtrack to my coding sessions and creative process",
+    "spotify": {
+      "clientId": "594fff7a7aa1484e8a8b61f97a1e7bd8",
+      "redirectUri": "http://localhost:3000/music"
+    },
+    "playlists": [
+      {
+        "id": "coding-focus",
+        "name": "Deep Focus",
+        "description": "Instrumental tracks for deep coding sessions",
+        "color": "#1DB954",
+        "tracks": 47,
+        "duration": "3h 12m",
+        "image": "/placeholder.svg?height=300&width=300",
+        "spotifyId": "37i9dQZF1DX0XUsuxWHRQd"
+      },
+      {
+        "id": "creative-flow",
+        "name": "Creative Flow",
+        "description": "Upbeat tracks to spark creativity and innovation",
+        "color": "#FF6B6B",
+        "tracks": 32,
+        "duration": "2h 45m",
+        "image": "/placeholder.svg?height=300&width=300",
+        "spotifyId": "37i9dQZF1DX5trt9i14X7j"
+      },
+      {
+        "id": "late-night",
+        "name": "Late Night Coding",
+        "description": "Chill vibes for those midnight debugging sessions",
+        "color": "#4ECDC4",
+        "tracks": 28,
+        "duration": "2h 18m",
+        "image": "/placeholder.svg?height=300&width=300",
+        "spotifyId": "37i9dQZF1DX6ziVCJnEm59"
+      },
+      {
+        "id": "energetic",
+        "name": "High Energy",
+        "description": "Pump-up tracks for tackling challenging problems",
+        "color": "#45B7D1",
+        "tracks": 41,
+        "duration": "2h 56m",
+        "image": "/placeholder.svg?height=300&width=300",
+        "spotifyId": "37i9dQZF1DX76Wlfdnj7AP"
+      }
+    ],
+    "recentTracks": [
+      {
+        "name": "Weightless",
+        "artist": "Marconi Union",
+        "album": "Weightless",
+        "duration": "8:10",
+        "image": "/placeholder.svg?height=64&width=64",
+        "spotifyId": "6p0q6iMVdkqv0tmeHemgRi"
+      },
+      {
+        "name": "Avril 14th",
+        "artist": "Aphex Twin",
+        "album": "Drukqs",
+        "duration": "2:05",
+        "image": "/placeholder.svg?height=64&width=64",
+        "spotifyId": "5TOYgNohZAWbeAcGMl5hpK"
+      },
+      {
+        "name": "Strobe",
+        "artist": "Deadmau5",
+        "album": "For Lack of a Better Name",
+        "duration": "10:36",
+        "image": "/placeholder.svg?height=64&width=64",
+        "spotifyId": "6Dg1iDZnhEJdWU5sWGTzV4"
+      }
+    ],
+    "topArtists": [
+      {
+        "name": "Nils Frahm",
+        "genre": "Neoclassical",
+        "image": "/placeholder.svg?height=200&width=200",
+        "spotifyId": "5gqhueRUZEa7VDnQt4HODp"
+      },
+      {
+        "name": "Ólafur Arnalds",
+        "genre": "Ambient",
+        "image": "/placeholder.svg?height=200&width=200",
+        "spotifyId": "4phGZZrJZRo4ElhRtViYdl"
+      },
+      {
+        "name": "Max Richter",
+        "genre": "Modern Classical",
+        "image": "/placeholder.svg?height=200&width=200",
+        "spotifyId": "2VYQTNDsvvKN9wmU5W7xpj"
+      },
+      {
+        "name": "Kiasmos",
+        "genre": "Electronic",
+        "image": "/placeholder.svg?height=200&width=200",
+        "spotifyId": "6kBDZFXuLrZgHnvmPu9NsG"
+      }
+    ]
+  }
+  

@@ -1,0 +1,22 @@
+{
+    "title": "Experience",
+    "items": [
+      {
+        "id": "ugracing",
+        "company": "UGRacing",
+        "position": "Head of Software Development & IT ",
+        "location": "University of Glasgow, UK",
+        "startDate": "2023",
+        "endDate": "Present",
+        "description": [
+          "Built software tools for UGRacing, the University of Glasgow's Formula Student team",
+          "Lead the development of the team's software stack, including data analysis and telemetry systems",
+          "Implemented Cost and Manufacturing tools to streamline the design and production process with a team",
+          "Lead and mentored a team of developers for anything IT and Software related - from hardware to software",
+          "Maintained the website, cost-tool and various databases and software systems"
+        ],
+        "technologies": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Python", "Docker", "GitHub Actions", "Django"]
+      }
+    ]
+  }
+  

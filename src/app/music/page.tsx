@@ -1,14 +1,18 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { CommandPalette } from "@/components/command-palette"
 import { Navigation } from "@/components/navigation"
-import { Hero } from "@/components/hero"
 import { SocialLinks } from "@/components/social-links"
 import { CustomCursor } from "@/components/cursor"
 import { Particles } from "@/components/particles"
+import { MusicHero } from "@/components/music-hero"
+import { SpotifyPlayer } from "@/components/spotify-player"
+import { PlaylistGrid } from "@/components/playlist-grid"
+import { RecentTracks } from "@/components/recent-tracks"
+import { TopArtists } from "@/components/top-artists"
+import { CommandPalette } from "@/components/command-palette"
 
-export default function Home() {
+export default function MusicPage() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
 
   useEffect(() => {
@@ -28,9 +32,17 @@ export default function Home() {
       <CustomCursor />
       <Particles />
       <Navigation />
-      <main className="main-content">
-        <Hero />
+
+      <main className="music-main">
+        <MusicHero />
+        <SpotifyPlayer />
+        <PlaylistGrid />
+        <div className="music-bottom-section">
+          <RecentTracks />
+          <TopArtists />
+        </div>
       </main>
+
       <SocialLinks />
       <CommandPalette isOpen={isCommandPaletteOpen} onClose={() => setIsCommandPaletteOpen(false)} />
     </div>

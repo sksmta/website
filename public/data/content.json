@@ -1,0 +1,29 @@
+{
+    "about": {
+      "title": "About Me",
+      "paragraphs": [
+        "I'm a passionate developer and entrepreneur, currently serving as the Founder & CEO at Resend. My journey in technology has been driven by an obsession with creating exceptional developer experiences.",
+        "With years of experience in building scalable applications and leading teams, I focus on bridging the gap between complex technology and intuitive user experiences. I believe in the power of clean code, thoughtful design, and continuous learning.",
+        "When I'm not coding or building products, you'll find me sharing knowledge through articles, speaking at conferences, or exploring new technologies that can make developers' lives easier."
+      ]
+    },
+    "hero": {
+      "name": "Shreyas Samanta",
+      "subtitle": "Software Engineer",
+      "description": "3rd Year Electronic & Software Engineering Student @ University of Glasgow, UK.",
+      "cta": "Press ctrl K to start →"
+    },
+   "navigation": {
+    "items": ["ABOUT", "PROJECTS", "USES", "MUSIC", "CONTACT"]
+  },
+    "social": {
+      "links": [
+        { "name": "email", "href": "mailto:shreyas@example.com" },
+        { "name": "twitter", "href": "https://twitter.com/shreyas" },
+        { "name": "github", "href": "https://github.com/shreyas" },
+        { "name": "linkedin", "href": "https://linkedin.com/in/shreyas" },
+        { "name": "instagram", "href": "https://instagram.com/shreyas" }
+      ]
+    }
+  }
+  

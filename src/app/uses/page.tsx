@@ -1,14 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { CommandPalette } from "@/components/command-palette"
 import { Navigation } from "@/components/navigation"
-import { Hero } from "@/components/hero"
 import { SocialLinks } from "@/components/social-links"
 import { CustomCursor } from "@/components/cursor"
 import { Particles } from "@/components/particles"
+import { UsesHero } from "@/components/uses-hero"
+import { UsesGrid } from "@/components/uses-grid"
+import { CommandPalette } from "@/components/command-palette"
 
-export default function Home() {
+export default function UsesPage() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
 
   useEffect(() => {
@@ -28,9 +29,12 @@ export default function Home() {
       <CustomCursor />
       <Particles />
       <Navigation />
-      <main className="main-content">
-        <Hero />
+
+      <main className="uses-main">
+        <UsesHero />
+        <UsesGrid />
       </main>
+
       <SocialLinks />
       <CommandPalette isOpen={isCommandPaletteOpen} onClose={() => setIsCommandPaletteOpen(false)} />
     </div>
