@@ -1,50 +1,31 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { User } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
-interface Artist {
+interface LastFmArtist {
   name: string
-  genre: string
-  image: string
-  spotifyId: string
+  playcount: string
+  image: Array<{
+    "#text": string
+    size: string
+  }>
+  url: string
 }
 
-interface TopArtistsData {
-  topArtists: Artist[]
+interface TopArtistsProps {
+  artists: LastFmArtist[]
 }
 
-export function TopArtists() {
-  const [artistsData, setArtistsData] = useState<TopArtistsData | null>(null)
+export function TopArtists({ artists = [] }: TopArtistsProps) {
   const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
   const [hoveredArtist, setHoveredArtist] = useState<number | null>(null)
 
-  useEffect(() => {
-    fetch("/data/music.json")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`)
-        }
-        return res.json()
-      })
-      .then((data) => setArtistsData({ topArtists: data.topArtists }))
-      .catch((err) => {
-        console.error("Failed to load top artists:", err)
-        setArtistsData({
-          topArtists: [
-            {
-              name: "Nils Frahm",
-              genre: "Neoclassical",
-              image: "/placeholder.svg?height=200&width=200",
-              spotifyId: "5gqhueRUZEa7VDnQt4HODp",
-            },
-          ],
-        })
-      })
-  }, [])
+  // Ensure artists is always an array and filter out invalid entries
+  const validArtists = Array.isArray(artists) ? artists.filter((artist) => artist && artist.name) : []
 
   useEffect(() => {
-    if (!artistsData) return
+    if (validArtists.length === 0) return
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -57,29 +38,52 @@ export function TopArtists() {
       { threshold: 0.1 },
     )
 
-    artistsData.topArtists.forEach((_, index) => {
+    validArtists.forEach((_, index) => {
       const element = document.getElementById(`artist-${index}`)
       if (element) observer.observe(element)
     })
 
     return () => observer.disconnect()
-  }, [artistsData])
+  }, [validArtists])
 
-  if (!artistsData) {
-    return <div>Loading top artists...</div>
+  const getImageUrl = (images: any[], size = "large") => {
+    if (!Array.isArray(images) || images.length === 0) {
+      return "/placeholder.svg?height=200&width=200"
+    }
+
+    const image = images.find((img) => img.size === size) || images[images.length - 1]
+    return image?.["#text"] || "/placeholder.svg?height=200&width=200"
+  }
+
+  const formatPlaycount = (count: string) => {
+    const num = Number.parseInt(count || "0")
+    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
+    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`
+    return num.toString()
+  }
+
+  if (validArtists.length === 0) {
+    return (
+      <section className="top-artists-section">
+        <div className="section-header">
+          <h2 className="section-title">Top Artists</h2>
+          <p className="section-subtitle">No top artists found</p>
+        </div>
+      </section>
+    )
   }
 
   return (
     <section className="top-artists-section">
       <div className="section-header">
         <h2 className="section-title">Top Artists</h2>
-        <p className="section-subtitle">My most played artists</p>
+        <p className="section-subtitle">Your most played artists</p>
       </div>
 
       <div className="artists-grid">
-        {artistsData.topArtists.map((artist, index) => (
+        {validArtists.map((artist, index) => (
           <div
-            key={`${artist.spotifyId}-${index}`}
+            key={`${artist.name}-${index}`}
             id={`artist-${index}`}
             className={`artist-card ${visibleItems.has(`artist-${index}`) ? "visible" : ""}`}
             style={{ animationDelay: `${index * 0.1}s` }}
@@ -87,16 +91,23 @@ export function TopArtists() {
             onMouseLeave={() => setHoveredArtist(null)}
           >
             <div className="artist-image-container">
-              <img src={artist.image || "/placeholder.svg"} alt={artist.name} className="artist-image" />
+              <img src={getImageUrl(artist.image) || "/placeholder.svg"} alt={artist.name} className="artist-image" />
               <div className="artist-overlay">
-                <User className="w-8 h-8" />
+                <a
+                  href={artist.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-red-400 transition-colors"
+                >
+                  <ExternalLink className="w-6 h-6" />
+                </a>
               </div>
               <div className="artist-glow"></div>
             </div>
 
             <div className="artist-info">
               <h4 className="artist-name">{artist.name}</h4>
-              <p className="artist-genre">{artist.genre}</p>
+              <p className="artist-genre">{formatPlaycount(artist.playcount)} plays</p>
             </div>
 
             <div className={`artist-background ${hoveredArtist === index ? "hovered" : ""}`}></div>

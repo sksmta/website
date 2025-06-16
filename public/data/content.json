@@ -2,9 +2,11 @@
     "about": {
       "title": "About Me",
       "paragraphs": [
-        "I'm a passionate developer and entrepreneur, currently serving as the Founder & CEO at Resend. My journey in technology has been driven by an obsession with creating exceptional developer experiences.",
-        "With years of experience in building scalable applications and leading teams, I focus on bridging the gap between complex technology and intuitive user experiences. I believe in the power of clean code, thoughtful design, and continuous learning.",
-        "When I'm not coding or building products, you'll find me sharing knowledge through articles, speaking at conferences, or exploring new technologies that can make developers' lives easier."
+        "I'm currently an undergraduate 3rd Year student at the University of Glasgow, pursuing a degree in Electronic & Software Engineering. My journey in software development has been driven by a passion for creating impactful solutions and a love for technology.",
+        "I have a strong foundation in programming languages such as Python, JavaScript, and C++, and I enjoy working on both front-end and back-end development. My interests include web development, machine learning, and open-source contributions.",
+        "Over the past few years, I've participated in numerous hackathons, with notable achievements in some of the largest hackathons. I thrive in collaborative environments and enjoy tackling complex problems with innovative solutions.",
+        "I've also worked as the Head of Software Development & IT at the University of Glasgow's Racing Team - UGRacing that builds Formula Student Racing Cars, where I led a team of developers to create software solutions that enhance our car's performance and data analysis capabilities.",
+        "I've also built and been involved in many open-source projects, contributing to the community and learning from other developers. My goal is to continue growing as a software engineer, taking on challenging projects that push the boundaries of technology."
       ]
     },
     "hero": {
@@ -18,11 +20,9 @@
   },
     "social": {
       "links": [
-        { "name": "email", "href": "mailto:shreyas@example.com" },
-        { "name": "twitter", "href": "https://twitter.com/shreyas" },
-        { "name": "github", "href": "https://github.com/shreyas" },
-        { "name": "linkedin", "href": "https://linkedin.com/in/shreyas" },
-        { "name": "instagram", "href": "https://instagram.com/shreyas" }
+        { "name": "email", "href": "mailto:samantashreyas910@gmail.com" },
+        { "name": "github", "href": "https://github.com/sksmta" },
+        { "name": "linkedin", "href": "https://linkedin.com/in/shreyas-samanta" }
       ]
     }
   }
