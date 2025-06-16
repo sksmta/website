@@ -1319,15 +1319,24 @@ body {
   color: #ff6b6b;
 }
 
+/* Fixed expandable content styles */
 .content-details {
-  max-height: 0;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 0;
+  opacity: 0;
 }
 
 .content-details.expanded {
-  max-height: 500px;
+  height: auto;
+  opacity: 1;
   padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content-details-inner {
+  overflow-y: auto;
+  max-height: 400px;
 }
 
 .description-list,
