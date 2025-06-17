@@ -1,7 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Play, Clock } from "lucide-react"
+
+interface TrackImage {
+  "#text": string
+  size: string
+}
 
 interface LastFmTrack {
   name: string
@@ -11,10 +16,7 @@ interface LastFmTrack {
   album?: {
     "#text": string
   }
-  image: Array<{
-    "#text": string
-    size: string
-  }>
+  image: TrackImage[]
   playcount?: string
   date?: {
     "#text": string
@@ -34,10 +36,11 @@ export function RecentTracks({ tracks = [] }: RecentTracksProps) {
   const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
   const [hoveredTrack, setHoveredTrack] = useState<number | null>(null)
 
-  // Ensure tracks is always an array and filter out invalid entries
-  const validTracks = Array.isArray(tracks)
-    ? tracks.filter((track) => track && track.name && track.artist?.["#text"])
-    : []
+  const validTracks = useMemo(() => {
+    return Array.isArray(tracks)
+      ? tracks.filter((track) => track && track.name && track.artist?.["#text"])
+      : []
+  }, [tracks])
 
   useEffect(() => {
     if (validTracks.length === 0) return
@@ -61,7 +64,7 @@ export function RecentTracks({ tracks = [] }: RecentTracksProps) {
     return () => observer.disconnect()
   }, [validTracks])
 
-  const getImageUrl = (images: any[], size = "medium") => {
+  const getImageUrl = (images: TrackImage[], size = "medium") => {
     if (!Array.isArray(images) || images.length === 0) {
       return "/placeholder.svg?height=64&width=64"
     }
@@ -70,27 +73,26 @@ export function RecentTracks({ tracks = [] }: RecentTracksProps) {
     return image?.["#text"] || "/placeholder.svg?height=64&width=64"
   }
 
-const formatTime = (uts: string | number) => {
-  const date = new Date(Number(uts) * 1000) // This is always UTC
-  const now = new Date()
+  const formatTime = (uts: string | number) => {
+    const date = new Date(Number(uts) * 1000)
+    const now = new Date()
 
-  const diffMs = now.getTime() - date.getTime()
-  const diffMinutes = Math.floor(diffMs / (1000 * 60))
-  const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
-  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+    const diffMs = now.getTime() - date.getTime()
+    const diffMinutes = Math.floor(diffMs / (1000 * 60))
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
 
-  if (diffMinutes < 1) return "Just now"
-  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes === 1 ? "" : "s"} ago`
-  if (diffHours < 24) return `${diffHours} hour${diffHours === 1 ? "" : "s"} ago`
-  if (diffDays < 7) return `${diffDays} day${diffDays === 1 ? "" : "s"} ago`
+    if (diffMinutes < 1) return "Just now"
+    if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes === 1 ? "" : "s"} ago`
+    if (diffHours < 24) return `${diffHours} hour${diffHours === 1 ? "" : "s"} ago`
+    if (diffDays < 7) return `${diffDays} day${diffDays === 1 ? "" : "s"} ago`
 
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC"
-  })
-}
-
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC"
+    })
+  }
 
   if (validTracks.length === 0) {
     return (
@@ -112,7 +114,6 @@ const formatTime = (uts: string | number) => {
 
       <div className="tracks-list">
         {validTracks.map((track, index) => {
-          // Additional safety check for each track
           if (!track || !track.name || !track.artist?.["#text"]) {
             return null
           }
@@ -128,7 +129,7 @@ const formatTime = (uts: string | number) => {
             >
               <div className="track-image-container">
                 <img
-                  src={getImageUrl(track.image) || "/placeholder.svg"}
+                  src={getImageUrl(track.image)}
                   alt={`${track.name} by ${track.artist["#text"]}`}
                   className="track-image"
                 />
