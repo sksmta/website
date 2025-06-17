@@ -23,31 +23,50 @@ export function SocialLinks() {
         }
         return res.json()
       })
-      .then((data) => setSocialData(data.social))
+      .then((data) => {
+        if (data && data.social && Array.isArray(data.social.links)) {
+          setSocialData(data.social)
+        } else {
+          console.warn("Invalid social data structure, using fallback")
+          setSocialData({
+            links: [
+              { name: "email", href: "mailto:samantashreyas910@gmail.com" },
+              { name: "github", href: "https://github.com/sksmta" },
+              { name: "linkedin", href: "https://linkedin.com/in/shreyas-samanta" },
+            ],
+          })
+        }
+      })
       .catch((err) => {
         console.error("Failed to load social data:", err)
-        // Fallback data
+        // Always provide fallback data on any error
         setSocialData({
           links: [
-            { name: "email", href: "mailto:shreyas@example.com" },
-            { name: "twitter", href: "https://twitter.com/shreyas" },
-            { name: "github", href: "https://github.com/shreyas" },
-            { name: "linkedin", href: "https://linkedin.com/in/shreyas" },
-            { name: "instagram", href: "https://instagram.com/shreyas" },
+            { name: "email", href: "mailto:samantashreyas910@gmail.com" },
+            { name: "github", href: "https://github.com/sksmta" },
+            { name: "linkedin", href: "https://linkedin.com/in/shreyas-samanta" },
           ],
         })
       })
   }, [])
 
-  if (!socialData) {
-    return <footer className="social-footer">Loading...</footer>
-  }
-
   return (
     <footer className="social-footer">
       <div className="social-links">
-        {socialData.links.map((link) => (
-          <Link key={link.name} href={link.href} className="social-link" target="_blank" rel="noopener noreferrer">
+        {(
+          socialData?.links || [
+            { name: "email", href: "mailto:samantashreyas910@gmail.com" },
+            { name: "github", href: "https://github.com/sksmta" },
+            { name: "linkedin", href: "https://linkedin.com/in/shreyas-samanta" },
+          ]
+        ).map((link) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            className="social-link"
+            target={link.href.startsWith("mailto:") ? "_self" : "_blank"}
+            rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+          >
             {link.name}
           </Link>
         ))}

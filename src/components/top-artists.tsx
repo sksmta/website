@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { ExternalLink } from "lucide-react"
 
 interface LastFmArtist {
@@ -18,15 +18,34 @@ interface TopArtistsProps {
 }
 
 export function TopArtists({ artists = [] }: TopArtistsProps) {
-  const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
+  const [imageMap, setImageMap] = useState<Record<string, string>>({})
   const [hoveredArtist, setHoveredArtist] = useState<number | null>(null)
-
-  // Ensure artists is always an array and filter out invalid entries
-  const validArtists = Array.isArray(artists) ? artists.filter((artist) => artist && artist.name) : []
+  const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
 
   useEffect(() => {
-    if (validArtists.length === 0) return
+    const fetchImages = async () => {
+      const newMap: Record<string, string> = {}
 
+      await Promise.all(
+        artists.map(async (artist) => {
+          try {
+            const res = await fetch(`/api/wiki-image?name=${encodeURIComponent(artist.name)}`)
+            const data = await res.json()
+            newMap[artist.name] = data.image
+          } catch (err) {
+            console.error(`Failed to load image for ${artist.name}`, err)
+            newMap[artist.name] = "/placeholder.svg"
+          }
+        }),
+      )
+
+      setImageMap(newMap)
+    }
+
+    fetchImages()
+  }, [artists])
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -38,31 +57,22 @@ export function TopArtists({ artists = [] }: TopArtistsProps) {
       { threshold: 0.1 },
     )
 
-    validArtists.forEach((_, index) => {
-      const element = document.getElementById(`artist-${index}`)
-      if (element) observer.observe(element)
+    artists.forEach((_, index) => {
+      const el = document.getElementById(`artist-${index}`)
+      if (el) observer.observe(el)
     })
 
     return () => observer.disconnect()
-  }, [validArtists])
-
-  const getImageUrl = (images: any[], size = "large") => {
-    if (!Array.isArray(images) || images.length === 0) {
-      return "/placeholder.svg?height=200&width=200"
-    }
-
-    const image = images.find((img) => img.size === size) || images[images.length - 1]
-    return image?.["#text"] || "/placeholder.svg?height=200&width=200"
-  }
+  }, [artists])
 
   const formatPlaycount = (count: string) => {
     const num = Number.parseInt(count || "0")
-    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
-    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`
+    if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(1)}M`
+    if (num >= 1_000) return `${(num / 1_000).toFixed(1)}K`
     return num.toString()
   }
 
-  if (validArtists.length === 0) {
+  if (artists.length === 0) {
     return (
       <section className="top-artists-section">
         <div className="section-header">
@@ -81,7 +91,7 @@ export function TopArtists({ artists = [] }: TopArtistsProps) {
       </div>
 
       <div className="artists-grid">
-        {validArtists.map((artist, index) => (
+        {artists.map((artist, index) => (
           <div
             key={`${artist.name}-${index}`}
             id={`artist-${index}`}
@@ -91,7 +101,11 @@ export function TopArtists({ artists = [] }: TopArtistsProps) {
             onMouseLeave={() => setHoveredArtist(null)}
           >
             <div className="artist-image-container">
-              <img src={getImageUrl(artist.image) || "/placeholder.svg"} alt={artist.name} className="artist-image" />
+              <img
+                src={imageMap[artist.name] || "/placeholder.svg"}
+                alt={artist.name}
+                className="artist-image"
+              />
               <div className="artist-overlay">
                 <a
                   href={artist.url}

@@ -70,12 +70,27 @@ export function RecentTracks({ tracks = [] }: RecentTracksProps) {
     return image?.["#text"] || "/placeholder.svg?height=64&width=64"
   }
 
-  const formatDuration = (ms: number) => {
-    const seconds = Math.floor(ms / 1000)
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs.toString().padStart(2, "0")}`
-  }
+const formatTime = (uts: string | number) => {
+  const date = new Date(Number(uts) * 1000) // This is always UTC
+  const now = new Date()
+
+  const diffMs = now.getTime() - date.getTime()
+  const diffMinutes = Math.floor(diffMs / (1000 * 60))
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+  if (diffMinutes < 1) return "Just now"
+  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes === 1 ? "" : "s"} ago`
+  if (diffHours < 24) return `${diffHours} hour${diffHours === 1 ? "" : "s"} ago`
+  if (diffDays < 7) return `${diffDays} day${diffDays === 1 ? "" : "s"} ago`
+
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC"
+  })
+}
+
 
   if (validTracks.length === 0) {
     return (
@@ -132,7 +147,7 @@ export function RecentTracks({ tracks = [] }: RecentTracksProps) {
 
               <div className="track-duration">
                 <Clock className="w-4 h-4" />
-                <span>{track.date?.["#text"] ? new Date(track.date["#text"]).toLocaleDateString() : "Recently"}</span>
+                <span>{track.date?.uts ? formatTime(track.date.uts) : "Recently"}</span>
               </div>
 
               <div className={`track-background ${hoveredTrack === index ? "hovered" : ""}`}></div>
