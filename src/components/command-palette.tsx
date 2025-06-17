@@ -52,7 +52,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
       shortcut: "S",
       section: "general",
       action: () => {
-        window.open("https://github.com/sksmta/portfolio", "_blank")
+        window.open("https://github.com/sksmta/website", "_blank")
         onClose()
       },
     },
