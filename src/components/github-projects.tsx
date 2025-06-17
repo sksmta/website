@@ -93,7 +93,7 @@ export function GitHubProjects() {
   const getUserDisplayName = (username: string) => {
     const displayNames: Record<string, string> = {
       sksmta: "Shreyas Samanta",
-      rhygg: "Rhygg",
+      rhygg: "Shreyas Samanta (Rhygg)",
     }
     return displayNames[username] || username
   }

@@ -1,6 +1,6 @@
 {
     "title": "Music",
-    "subtitle": "The soundtrack to my coding sessions and creative process",
+    "subtitle": "A Page dedicated to what I listen to on a daily",
     "spotify": {
       "clientId": "594fff7a7aa1484e8a8b61f97a1e7bd8",
       "redirectUri": "http://localhost:3000/music"

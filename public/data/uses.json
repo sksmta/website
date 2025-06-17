@@ -92,11 +92,11 @@
             "url": "https://notion.so"
           },
           {
-            "name": "Linear",
-            "description": "Issue tracking and project management for modern teams",
-            "category": "Project Management",
+            "name": "Motion",
+            "description": "AI-powered productivity tool designed to help users manage tasks, schedule meetings, and organize projects",
+            "category": "Time Management",
             "color": "#5E6AD2",
-            "url": "https://linear.app"
+            "url": "https://www.usemotion.com"
           },
           {
             "name": "Raycast",
@@ -106,11 +106,11 @@
             "url": "https://raycast.com"
           },
           {
-            "name": "Arc Browser",
-            "description": "The browser company's reimagined web browser",
+            "name": "Opera Browser",
+            "description": "Web browser developed by Opera Software, known for its speed, security features, and built-in tools",
             "category": "Browser",
             "color": "#FF6B6B",
-            "url": "https://arc.net"
+            "url": "https://opera.com"
           }
         ]
       },
@@ -120,32 +120,25 @@
         "icon": "Monitor",
         "items": [
           {
-            "name": "MacBook Pro M3",
-            "description": "16-inch with 32GB RAM for development work",
+            "name": "HP Victus 15",
+            "description": "Multi-purpose laptop for development and gaming",
             "category": "Laptop",
             "color": "#A8A8A8",
-            "url": "https://apple.com"
+            "url": "https://www.hp.com/in-en/shop/victus-gaming-laptop-15-fa1317tx-9y0y8pa.html?srsltid=AfmBOorG8NYmuUeVDr_eEnnre-mp7l7JvTk0rHvmkttn8gPyUp5n5RVHu_Q"
           },
           {
-            "name": "Studio Display",
-            "description": "27-inch 5K Retina display for crisp visuals",
-            "category": "Monitor",
-            "color": "#A8A8A8",
-            "url": "https://apple.com"
-          },
-          {
-            "name": "Magic Keyboard",
-            "description": "Wireless keyboard with numeric keypad",
+            "name": "Razor Ornata V3 Pro",
+            "description": "Mechanical gaming keyboard with customizable RGB lighting",
             "category": "Input",
             "color": "#A8A8A8",
-            "url": "https://apple.com"
+            "url": "https://www.razer.com/gaming-keyboards/razer-ornata-v3-pro/RZ03-04650100-R3M1"
           },
           {
-            "name": "MX Master 3S",
-            "description": "Advanced wireless mouse for productivity",
+            "name": "Razor DeathAdder V3 Pro",
+            "description": "High-performance gaming mouse with ergonomic design",
             "category": "Input",
             "color": "#0066CC",
-            "url": "https://logitech.com"
+            "url": "https://www.razer.com/gaming-mice/razer-deathadder-v3-pro/RZ01-04550100-R3M1"
           }
         ]
       }
