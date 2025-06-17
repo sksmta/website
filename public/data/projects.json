@@ -1,0 +1,104 @@
+{
+  "title": "Projects",
+  "subtitle": "A collection of things I've built, from web applications to open-source contributions",
+  "featured": [
+    {
+      "id": "ugracing-platform",
+      "title": "UGRacing Team Platform",
+      "description": "Comprehensive web platform for the University of Glasgow's Formula Student team, featuring project management, cost tracking, and team collaboration tools.",
+      "longDescription": "Built a full-stack web application to streamline UGRacing's operations, including automated cost calculations for Formula Student regulations, project timeline management, and team member coordination. The platform reduced administrative overhead by 60% and improved project delivery times.",
+      "technologies": ["React", "Next.js", "TypeScript", "PostgreSQL", "Node.js", "Docker"],
+      "category": "Web Application",
+      "status": "Live",
+      "year": "2024",
+      "image": "/placeholder.svg?height=400&width=600",
+      "links": {
+        "github": "https://github.com/sksmta/ugracing-platform",
+        "live": "https://ugracing.gla.ac.uk"
+      },
+      "highlights": [
+        "Reduced administrative overhead by 60%",
+        "Automated Formula Student cost calculations",
+        "Real-time collaboration features",
+        "Docker containerization for easy deployment"
+      ]
+    },
+    {
+      "id": "smart-campus-iot",
+      "title": "Smart Campus IoT System",
+      "description": "IoT-based environmental monitoring system for university buildings, tracking air quality, temperature, and occupancy levels in real-time.",
+      "longDescription": "Developed an end-to-end IoT solution using ESP32 microcontrollers and various sensors to monitor environmental conditions across campus buildings. The system includes a React dashboard for real-time data visualization and historical analysis.",
+      "technologies": ["Python", "React", "ESP32", "MQTT", "InfluxDB", "Grafana"],
+      "category": "IoT & Hardware",
+      "status": "In Development",
+      "year": "2024",
+      "image": "/placeholder.svg?height=400&width=600",
+      "links": {
+        "github": "https://github.com/sksmta/smart-campus-iot"
+      },
+      "highlights": [
+        "Real-time environmental monitoring",
+        "Custom PCB design for sensor nodes",
+        "MQTT protocol for efficient data transmission",
+        "Machine learning for predictive analytics"
+      ]
+    },
+    {
+      "id": "hackathon-winner-app",
+      "title": "EcoTrack - Carbon Footprint Tracker",
+      "description": "Award-winning mobile application that helps users track and reduce their carbon footprint through gamification and social features.",
+      "longDescription": "Winner of the 'Best Sustainability App' at HackGlasgow 2023. EcoTrack uses machine learning to analyze user behavior and provide personalized recommendations for reducing carbon emissions. Features include social challenges, achievement systems, and integration with public transport APIs.",
+      "technologies": ["React Native", "Python", "FastAPI", "MongoDB", "TensorFlow"],
+      "category": "Mobile Application",
+      "status": "Completed",
+      "year": "2023",
+      "image": "/placeholder.svg?height=400&width=600",
+      "links": {
+        "github": "https://github.com/sksmta/ecotrack-app",
+        "demo": "https://ecotrack-demo.vercel.app"
+      },
+      "highlights": [
+        "🏆 Winner at HackGlasgow 2023",
+        "ML-powered carbon footprint analysis",
+        "Social gamification features",
+        "Integration with 5+ transport APIs"
+      ]
+    }
+  ],
+  "other": [
+    {
+      "id": "portfolio-website",
+      "title": "Personal Portfolio Website",
+      "description": "This very website! Built with Next.js, featuring dynamic content, music integration, and a custom design system.",
+      "technologies": ["Next.js", "TypeScript", "Tailwind CSS", "Last.fm API"],
+      "category": "Web Development",
+      "year": "2024",
+      "links": {
+        "github": "https://github.com/sksmta/portfolio",
+        "live": "https://shreyas.dev"
+      }
+    },
+    {
+      "id": "open-source-contributions",
+      "title": "Open Source Contributions",
+      "description": "Regular contributions to various open-source projects, including bug fixes, feature implementations, and documentation improvements.",
+      "technologies": ["Various"],
+      "category": "Open Source",
+      "year": "2023-2024",
+      "links": {
+        "github": "https://github.com/sksmta"
+      }
+    },
+    {
+      "id": "university-coursework",
+      "title": "University Projects Collection",
+      "description": "A collection of significant coursework projects including embedded systems, machine learning models, and software engineering assignments.",
+      "technologies": ["C++", "Python", "VHDL", "MATLAB"],
+      "category": "Academic",
+      "year": "2023-2024",
+      "links": {
+        "github": "https://github.com/sksmta/university-projects"
+      }
+    }
+  ]
+}

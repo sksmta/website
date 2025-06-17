@@ -1,0 +1,25 @@
+{
+  "title": "Contact",
+  "subtitle": "Let's connect and build something amazing together",
+  "description": "I'm always interested in new opportunities, collaborations, and interesting conversations. Whether you have a project in mind, want to discuss technology, or just want to say hello, I'd love to hear from you.",
+  "email": "samantashreyas910@gmail.com",
+  "social": {
+    "github": "https://github.com/sksmta",
+    "linkedin": "https://linkedin.com/in/shreyas-samanta",
+    "twitter": "https://twitter.com/sksmta"
+  },
+  "availability": {
+    "status": "Available for opportunities",
+    "types": [
+      "Full-time positions",
+      "Internship opportunities",
+      "Freelance projects",
+      "Open source collaborations",
+      "Speaking engagements"
+    ]
+  },
+  "location": {
+    "current": "Glasgow, UK",
+    "timezone": "GMT (UTC+0)"
+  }
+}

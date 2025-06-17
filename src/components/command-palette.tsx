@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
-import { Link, Mail, Code, Home, User, FileText, Lightbulb, X } from "lucide-react"
+import { Link, Mail, Code, Home, User, Briefcase, Settings, Music, MessageCircle, X } from "lucide-react"
 
 interface CommandPaletteProps {
   isOpen: boolean
@@ -52,7 +52,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
       shortcut: "S",
       section: "general",
       action: () => {
-        window.open("https://github.com/shreyas/personal-website", "_blank")
+        window.open("https://github.com/sksmta/portfolio", "_blank")
         onClose()
       },
     },
@@ -79,24 +79,46 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
       },
     },
     {
-      id: "articles",
-      title: "Articles",
-      icon: <FileText className="w-4 h-4" />,
-      shortcut: "G B",
-      section: "goto",
-      action: () => {
-        window.location.href = "/articles"
-        onClose()
-      },
-    },
-    {
       id: "projects",
       title: "Projects",
-      icon: <Lightbulb className="w-4 h-4" />,
+      icon: <Briefcase className="w-4 h-4" />,
       shortcut: "G P",
       section: "goto",
       action: () => {
         window.location.href = "/projects"
+        onClose()
+      },
+    },
+    {
+      id: "uses",
+      title: "Uses",
+      icon: <Settings className="w-4 h-4" />,
+      shortcut: "G U",
+      section: "goto",
+      action: () => {
+        window.location.href = "/uses"
+        onClose()
+      },
+    },
+    {
+      id: "music",
+      title: "Music",
+      icon: <Music className="w-4 h-4" />,
+      shortcut: "G M",
+      section: "goto",
+      action: () => {
+        window.location.href = "/music"
+        onClose()
+      },
+    },
+    {
+      id: "contact",
+      title: "Contact",
+      icon: <MessageCircle className="w-4 h-4" />,
+      shortcut: "G C",
+      section: "goto",
+      action: () => {
+        window.location.href = "/contact"
         onClose()
       },
     },
