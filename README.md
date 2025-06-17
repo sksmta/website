@@ -16,7 +16,7 @@ This is the source code for my personal website, built to showcase my projects, 
 
 ## 🚀 Live Demo
 
-👉 [View Website](https://website-sksmta.vercel.app)
+👉 [View Website](https://sksmta.com)
 
 ---
 
