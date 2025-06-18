@@ -40,7 +40,7 @@ export const metadata = {
   openGraph: {
     title: "Shreyas Samanta – Software Engineer",
     description:
-      "Explore the work and projects of Shreyas Samanta.",
+      "3rd Year Electronic & Software Engineering Student @ University of Glasgow.",
     url: "https://sksmta.com",
     siteName: "Shreyas Samanta",
     images: [
