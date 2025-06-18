@@ -18,32 +18,8 @@ interface TopArtistsProps {
 }
 
 export function TopArtists({ artists = [] }: TopArtistsProps) {
-  const [imageMap, setImageMap] = useState<Record<string, string>>({})
   const [hoveredArtist, setHoveredArtist] = useState<number | null>(null)
   const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      const newMap: Record<string, string> = {}
-
-      await Promise.all(
-        artists.map(async (artist) => {
-          try {
-            const res = await fetch(`/api/wiki-image?name=${encodeURIComponent(artist.name)}`)
-            const data = await res.json()
-            newMap[artist.name] = data.image
-          } catch (err) {
-            console.error(`Failed to load image for ${artist.name}`, err)
-            newMap[artist.name] = "/placeholder.svg"
-          }
-        }),
-      )
-
-      setImageMap(newMap)
-    }
-
-    fetchImages()
-  }, [artists])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,6 +40,15 @@ export function TopArtists({ artists = [] }: TopArtistsProps) {
 
     return () => observer.disconnect()
   }, [artists])
+
+  const getImageUrl = (images: any[], size = "large") => {
+    if (!Array.isArray(images) || images.length === 0) {
+      return "/placeholder.svg?height=200&width=200"
+    }
+
+    const image = images.find((img) => img.size === size) || images[images.length - 1]
+    return image?.["#text"] || "/placeholder.svg?height=200&width=200"
+  }
 
   const formatPlaycount = (count: string) => {
     const num = Number.parseInt(count || "0")
@@ -102,9 +87,13 @@ export function TopArtists({ artists = [] }: TopArtistsProps) {
           >
             <div className="artist-image-container">
               <img
-                src={imageMap[artist.name] || "/placeholder.svg"}
+                src={getImageUrl(artist.image) || "/placeholder.svg"}
                 alt={artist.name}
                 className="artist-image"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = "/placeholder.svg?height=200&width=200"
+                }}
               />
               <div className="artist-overlay">
                 <a

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ExternalLink, Music, Calendar, TrendingUp } from "lucide-react"
 
 interface LastFmPlayerProps {
@@ -11,6 +11,17 @@ interface LastFmPlayerProps {
 
 export function LastFmPlayer({ userInfo, recentTracks = [], currentTrack }: LastFmPlayerProps) {
   const [hoveredTrack, setHoveredTrack] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   const getImageUrl = (images: any[], size = "large") => {
     if (!Array.isArray(images) || images.length === 0) {
@@ -37,117 +48,141 @@ export function LastFmPlayer({ userInfo, recentTracks = [], currentTrack }: Last
   const lastTrack = Array.isArray(recentTracks) && recentTracks.length > 0 ? recentTracks[0] : null
 
   return (
-    <div className="lastfm-player">
-      <div className="player-container">
-        {/* User Stats */}
-        <div className="user-stats">
-          <div className="user-avatar-container">
-            <img
-              src={getImageUrl(userInfo?.image, "large") || "/placeholder.svg"}
-              alt={userInfo?.name || "User"}
-              className="user-avatar"
-            />
-            <div className="user-avatar-glow"></div>
-          </div>
-          <div className="user-details">
-            <h3 className="user-name">{userInfo?.realname || userInfo?.name || "Music Lover"}</h3>
-            <p className="user-username">@{userInfo?.name || "user"}</p>
-            <div className="user-stats-grid">
-              <div className="stat-item">
-                <TrendingUp className="w-4 h-4" />
-                <span>{formatPlaycount(userInfo?.playcount || "0")} scrobbles</span>
-              </div>
-              <div className="stat-item">
-                <Calendar className="w-4 h-4" />
-                <span>
-                  Since{" "}
-                  {userInfo?.registered?.["#text"]
-                    ? new Date(userInfo.registered["#text"] * 1000).getFullYear()
-                    : "2023"}
-                </span>
-              </div>
-            </div>
-          </div>
+    <div className="lastfm-player-redesigned">
+      <div className="player-header">
+        <div className="player-title">
+          <Music className="w-5 h-5 text-red-500" />
+          <h2>Now Playing</h2>
         </div>
+        <div className="lastfm-badge">
+          <span className="lastfm-logo">Last.fm</span>
+        </div>
+      </div>
 
-        {/* Now Playing / Recent Track */}
-        <div className="now-playing-section">
+      <div className={`player-content ${isMobile ? "mobile" : ""}`}>
+        {/* Main Track Display */}
+        <div className="main-track-section">
           {nowPlaying ? (
-            <div className="now-playing">
-              <div className="now-playing-indicator">
-                <div className="pulse-dot"></div>
+            <div className="now-playing-track">
+              <div className="track-status-indicator">
+                <div className="live-dot"></div>
                 <span>Now Playing</span>
               </div>
-              <div className="track-display">
-                <div className="track-image-container">
-                  <img
-                    src={getImageUrl(nowPlaying.image) || "/placeholder.svg"}
-                    alt={nowPlaying.name || "Track"}
-                    className="track-image rotating"
-                  />
-                  <div className="vinyl-effect"></div>
-                </div>
-                <div className="track-info">
-                  <h4 className="track-name">{nowPlaying.name || "Unknown Track"}</h4>
-                  <p className="track-artist">{nowPlaying.artist?.["#text"] || "Unknown Artist"}</p>
-                  <p className="track-album">{nowPlaying.album?.["#text"] || ""}</p>
-                </div>
-                <a href={nowPlaying.url || "#"} target="_blank" rel="noopener noreferrer" className="external-link">
-                  <ExternalLink className="w-5 h-5" />
+
+              <div className="track-artwork-container">
+                <img
+                  src={getImageUrl(nowPlaying.image) || "/placeholder.svg"}
+                  alt={nowPlaying.name || "Track"}
+                  className="track-artwork rotating"
+                />
+                <div className="vinyl-center"></div>
+              </div>
+
+              <div className="track-metadata">
+                <h3 className="track-title">{nowPlaying.name || "Unknown Track"}</h3>
+                <p className="track-artist">{nowPlaying.artist?.["#text"] || "Unknown Artist"}</p>
+                {nowPlaying.album?.["#text"] && <p className="track-album">{nowPlaying.album["#text"]}</p>}
+                <a
+                  href={nowPlaying.url || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="track-external-link"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>View on Last.fm</span>
                 </a>
               </div>
             </div>
           ) : lastTrack ? (
-            <div className="recent-track">
-              <div className="recent-indicator">
+            <div className="last-played-track">
+              <div className="track-status-indicator recent">
                 <Music className="w-4 h-4" />
                 <span>Last Played</span>
               </div>
-              <div className="track-display">
-                <div className="track-image-container">
-                  <img
-                    src={getImageUrl(lastTrack.image) || "/placeholder.svg"}
-                    alt={lastTrack.name || "Track"}
-                    className="track-image"
-                  />
-                </div>
-                <div className="track-info">
-                  <h4 className="track-name">{lastTrack.name || "Unknown Track"}</h4>
-                  <p className="track-artist">{lastTrack.artist?.["#text"] || "Unknown Artist"}</p>
-                  <p className="track-album">{lastTrack.album?.["#text"] || ""}</p>
-                </div>
-                <a href={lastTrack.url || "#"} target="_blank" rel="noopener noreferrer" className="external-link">
-                  <ExternalLink className="w-5 h-5" />
+
+              <div className="track-artwork-container">
+                <img
+                  src={getImageUrl(lastTrack.image) || "/placeholder.svg"}
+                  alt={lastTrack.name || "Track"}
+                  className="track-artwork"
+                />
+              </div>
+
+              <div className="track-metadata">
+                <h3 className="track-title">{lastTrack.name || "Unknown Track"}</h3>
+                <p className="track-artist">{lastTrack.artist?.["#text"] || "Unknown Artist"}</p>
+                {lastTrack.album?.["#text"] && <p className="track-album">{lastTrack.album["#text"]}</p>}
+                <a
+                  href={lastTrack.url || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="track-external-link"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>View on Last.fm</span>
                 </a>
               </div>
             </div>
           ) : (
-            <div className="no-track-message">
-              <Music className="w-8 h-8 mb-2" />
+            <div className="no-track-placeholder">
+              <div className="placeholder-icon">
+                <Music className="w-12 h-12" />
+              </div>
               <h3>Music Discovery</h3>
               <p>Explore Shreyas's music taste below</p>
             </div>
           )}
         </div>
 
-        {/* Last.fm Branding */}
-        <div className="lastfm-branding">
-          <div className="lastfm-logo">
-            <span className="lastfm-text">Last.fm</span>
+        {/* User Stats Sidebar */}
+        <div className="user-stats-sidebar">
+          <div className="user-profile">
+            <div className="user-avatar-wrapper">
+              <img
+                src={getImageUrl(userInfo?.image, "large") || "/placeholder.svg"}
+                alt={userInfo?.name || "User"}
+                className="user-avatar"
+              />
+            </div>
+            <div className="user-info">
+              <h4 className="user-display-name">{userInfo?.realname || userInfo?.name || "Music Lover"}</h4>
+              <p className="user-handle">@{userInfo?.name || "user"}</p>
+            </div>
           </div>
-          <p className="lastfm-description">Powered by music scrobbling</p>
+
+          <div className="listening-stats">
+            <div className="stat-card">
+              <TrendingUp className="w-4 h-4 text-red-500" />
+              <div className="stat-info">
+                <span className="stat-value">{formatPlaycount(userInfo?.playcount || "0")}</span>
+                <span className="stat-label">Total Scrobbles</span>
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <Calendar className="w-4 h-4 text-blue-500" />
+              <div className="stat-info">
+                <span className="stat-value">
+                  {userInfo?.registered?.["#text"]
+                    ? new Date(userInfo.registered["#text"] * 1000).getFullYear()
+                    : "2023"}
+                </span>
+                <span className="stat-label">Listening Since</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Music Visualizer */}
-      <div className="music-visualizer">
-        {Array.from({ length: 32 }).map((_, i) => (
+      {/* Subtle Music Visualizer */}
+      <div className="music-visualizer-subtle">
+        {Array.from({ length: 24 }).map((_, i) => (
           <div
             key={i}
-            className="visualizer-bar"
+            className="visualizer-bar-subtle"
             style={{
               animationDelay: `${i * 0.1}s`,
-              animationDuration: `${1 + (i % 3) * 0.2}s`,
+              animationDuration: `${1.2 + (i % 4) * 0.3}s`,
             }}
           ></div>
         ))}
