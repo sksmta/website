@@ -16,7 +16,7 @@
       "cta": "Press ctrl K to start →"
     },
    "navigation": {
-    "items": ["ABOUT", "PROJECTS", "USES", "MUSIC", "CONTACT"]
+    "items": ["ABOUT", "PROJECTS", "USES", "CONTACT"]
   },
     "social": {
       "links": [
